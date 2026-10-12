@@ -1,0 +1,8 @@
+{
+  "name": "demo_perovskite",
+  "description": "展示用: 2024 年钙钛矿太阳能电池文献(OpenAlex 公开元数据, 不含全文)",
+  "query": "perovskite solar cell",
+  "year_from": 2024,
+  "year_to": 2024,
+  "topics": ["器件结构与界面", "材料组分与缺陷", "稳定性与封装", "大面积与产业化", "理论计算与机理", "综述与其他"]
+}

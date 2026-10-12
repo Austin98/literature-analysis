@@ -1,0 +1,7 @@
+/data/
+/output/
+*.pdf
+__pycache__/
+*.pyc
+.env
+*.bak

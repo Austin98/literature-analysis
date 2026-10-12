@@ -1,0 +1,9 @@
+{
+  "name": "afrl_dayton",
+  "description": "美国空军研究实验室代顿驻地(AFRL Dayton, OH)文献分析",
+  "institution_ror": "https://ror.org/02e2egq70",
+  "year_from": 2025,
+  "target_patterns": ["Air Force Research Laboratory", "AFRL/R[A-Z]", "Wright[- ]Patterson", "WPAFB", "711(st)? (?:Human Performance Wing|HPW)"],
+  "contractor_patterns": ["UES, Inc", "KBR", "BlueHalo", "Infoscitex", "Azimuth", "Henry M. Jackson Foundation", "Booz Allen", "Leidos"],
+  "topics": ["材料与制造", "半导体与电子", "航空航天与高超声速", "雷达与传感", "定向能与激光", "自主系统与人工智能", "网络空间与通信", "航空医学与人的效能", "生物技术与微生物", "化学与含能材料", "结构与力学", "光学与光子学", "量子与前沿基础"]
+}
