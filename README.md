@@ -35,24 +35,34 @@
 
 不用自己敲命令。把下面这句话直接发给你正在用的 AI 助手:
 
-> 帮我安装 skill: 运行 `npx skills add Austin98/literature-analysis -g -y -a claude-code`, 然后在安装目录下 `pip install -r requirements.txt`, 装好后读一下 SKILL.md, 告诉我怎么用。
+> 帮我安装 skill: 运行 `npx skills add Austin98/literature-analysis -g -y -a codebuddy`, 然后在安装目录下 `pip install -r requirements.txt`, 装好后读一下 SKILL.md, 告诉我怎么用。
 
-助手会自己执行命令, 把 skill 装好并安装 Python 依赖。把 `-a claude-code` 换成你用的工具:
+助手会自己执行命令, 把 skill 装好并安装 Python 依赖。把 `-a codebuddy` 换成你用的工具:
 
-| 你的工具 | `-a` 参数 |
-|---|---|
-| Claude Code | `claude-code` |
-| Codex CLI | `codex` |
-| Cursor | `cursor` |
-| CodeBuddy | `codebuddy` |
-| Trae | `trae` |
-| Cline / Roo / Windsurf / opencode 等 | 见 [CLI 支持列表](https://github.com/vercel-labs/skills) |
-| 不确定, 或想装到所有工具 | 省略 `-a`(交互选择), 或写 `--all` |
+| 你的工具 | 厂商 | `-a` 参数 |
+|---|---|---|
+| CodeBuddy | 腾讯 | `codebuddy` |
+| Trae / Trae CN | 字节跳动 | `trae` / `trae-cn` |
+| Qwen Code | 阿里通义 | `qwen-code` |
+| 通义灵码 Lingma | 阿里 | `lingma` |
+| Qoder / Qoder CN | 阿里 | `qoder` / `qoder-cn` |
+| iFlow CLI | 心流 | `iflow-cli` |
+| Kimi Code CLI | 月之暗面 | `kimi-code-cli` |
+| CodeArts Agent | 华为 | `codearts-agent` |
+| MiniMax Code | MiniMax | `minimax-code` |
+| ZCode | 智谱 | `zcode` |
+| Claude Code | Anthropic | `claude-code` |
+| Codex CLI | OpenAI | `codex` |
+| Cursor | Anysphere | `cursor` |
+| Cline / Roo / Windsurf / opencode / GitHub Copilot 等 | — | 见 [CLI 支持列表](https://github.com/vercel-labs/skills) |
+| 不确定, 或想装到所有工具 | — | 省略 `-a`(交互选择), 或写 `--all` |
+
+> 工具名以 `skills` CLI 实际支持的为准 (`-a` 填错时 CLI 会列出全部可用值)。上表是国内常用的几个。
 
 - `-g` 装到用户全局目录, 所有项目都能用; 去掉 `-g` 只装到当前项目。
 - Python 依赖只在真正跑分析时才需要, 安装 skill 本身不需要。开始分析前记得装上 (见下一节)。
 
-**实测记录** (Windows 11 + Git Bash, 从公开仓库安装):
+**实测记录** (Windows 11 + Git Bash, 从公开仓库安装)。测试机装了 Claude Code, 所以下面用它跑通; 换成上表任意 `-a` 参数命令完全一致:
 
 | 项目 | 结果 |
 |---|---|
@@ -90,11 +100,11 @@ pip install -r requirements.txt
 npx skills add Austin98/literature-analysis
 
 # 指定工具安装到当前项目
-npx skills add Austin98/literature-analysis -a claude-code
-npx skills add Austin98/literature-analysis -a codex -a trae -a codebuddy
+npx skills add Austin98/literature-analysis -a codebuddy
+npx skills add Austin98/literature-analysis -a trae -a qwen-code -a kimi-code-cli
 
 # 安装到用户全局目录 (所有项目可用)
-npx skills add Austin98/literature-analysis -g -a claude-code
+npx skills add Austin98/literature-analysis -g -a codebuddy
 
 # 安装到所有支持的工具
 npx skills add Austin98/literature-analysis --all
@@ -104,7 +114,7 @@ npx skills list
 npx skills remove literature-analysis
 ```
 
-`-a` 后面的工具名以 CLI 实际支持的为准, 常用的有 `claude-code`、`codex`、`codebuddy`、`trae`、`cursor`、`gemini-cli`、`github-copilot`、`opencode`、`windsurf`、`qwen-code`、`cline`、`roo`、`kimi-code-cli` 等 (完整列表运行 `npx skills add --help` 或在 CLI 报错时查看)。CLI 中没有列出的工具可使用下面的手动方式。
+`-a` 后面的工具名以 CLI 实际支持的为准, 完整列表运行 `npx skills add --help`, 或随便填一个错的名字让 CLI 把可用值列出来。常见的国产工具: `codebuddy`、`trae`、`trae-cn`、`qwen-code`、`lingma`、`qoder`、`qoder-cn`、`iflow-cli`、`kimi-code-cli`、`codearts-agent`、`minimax-code`、`zcode`; 国外工具: `claude-code`、`codex`、`cursor`、`gemini-cli`、`github-copilot`、`opencode`、`windsurf`、`cline`、`roo`。CLI 中没有列出的工具可使用下面的手动方式。
 
 ### 4. 不想安装? 用完即走
 
@@ -120,12 +130,21 @@ npx skills use Austin98/literature-analysis@literature-analysis
 
 | 工具 | 个人(全局)目录 | 项目目录 |
 |---|---|---|
+| CodeBuddy | `~/.codebuddy/skills/literature-analysis/` | `.codebuddy/skills/literature-analysis/` |
+| Trae / Trae CN | `~/.trae/skills/` (CN: `~/.trae-cn/skills/`) | `.trae/skills/literature-analysis/` |
+| Qwen Code | `~/.qwen/skills/literature-analysis/` | `.qwen/skills/literature-analysis/` |
+| 通义灵码 Lingma | `~/.lingma/skills/literature-analysis/` | `.lingma/skills/literature-analysis/` |
+| Qoder | `~/.qoder/skills/` (CN: `~/.qoder-cn/skills/`) | `.qoder/skills/literature-analysis/` |
+| iFlow CLI | `~/.iflow/skills/literature-analysis/` | `.iflow/skills/literature-analysis/` |
+| Kimi Code CLI | `~/.agents/skills/literature-analysis/` | `.agents/skills/literature-analysis/` |
+| CodeArts Agent | `~/.codeartsdoer/skills/literature-analysis/` | `.codeartsdoer/skills/literature-analysis/` |
+| MiniMax Code | `~/.minimax/skills/literature-analysis/` | `.minimax/skills/literature-analysis/` |
+| ZCode | `~/.zcode/skills/literature-analysis/` | `.zcode/skills/literature-analysis/` |
 | Claude Code | `~/.claude/skills/literature-analysis/` | `.claude/skills/literature-analysis/` |
 | Codex CLI | `~/.codex/skills/literature-analysis/` | `.agents/skills/literature-analysis/` |
-| CodeBuddy | `~/.codebuddy/skills/literature-analysis/` | `.codebuddy/skills/literature-analysis/` |
-| Trae | `~/.trae/skills/literature-analysis/` | `.trae/skills/literature-analysis/` |
 
-- Windows 下 `~` 指 `%USERPROFILE%`, 例如 `C:\Users\<你>\.claude\skills\literature-analysis\`。
+- 上表目录取自 `skills` CLI 源码中的配置, 随版本可能变化。
+- Windows 下 `~` 指 `%USERPROFILE%`, 例如 `C:\Users\<你>\.codebuddy\skills\literature-analysis\`。
 - 各工具的目录约定可能随版本变化, 以该工具的官方文档为准。
 - 若工具不支持 skill 目录, 可把 `SKILL.md` 的内容粘贴为其系统提示或项目规则, 并让它在仓库根目录执行其中的命令。脚本本身与工具无关。
 

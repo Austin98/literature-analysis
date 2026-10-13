@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""语义标注: 由调用本 skill 的 AI 助手(如 Claude Code、Codex、CodeBuddy、Trae)完成, 不在代码里调用任何外部 API。
+"""语义标注: 由调用本 skill 的 AI 助手(如 CodeBuddy、Trae、Qwen Code、Kimi Code CLI、Claude Code、Codex)完成, 不在代码里调用任何外部 API。
 
 流程:
   1. prepare  把记录切成批次, 每批写一个 JSONL 任务文件(含标题、摘要、首页文本)
