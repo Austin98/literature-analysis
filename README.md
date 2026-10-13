@@ -31,7 +31,38 @@
 
 ## 安装
 
-### 1. 获取代码并安装依赖
+### 1. 一句话安装 (推荐)
+
+不用自己敲命令。把下面这句话直接发给你正在用的 AI 助手:
+
+> 帮我安装 skill: 运行 `npx skills add Austin98/literature-analysis -g -y -a claude-code`, 然后在安装目录下 `pip install -r requirements.txt`, 装好后读一下 SKILL.md, 告诉我怎么用。
+
+助手会自己执行命令, 把 skill 装好并安装 Python 依赖。把 `-a claude-code` 换成你用的工具:
+
+| 你的工具 | `-a` 参数 |
+|---|---|
+| Claude Code | `claude-code` |
+| Codex CLI | `codex` |
+| Cursor | `cursor` |
+| CodeBuddy | `codebuddy` |
+| Trae | `trae` |
+| Cline / Roo / Windsurf / opencode 等 | 见 [CLI 支持列表](https://github.com/vercel-labs/skills) |
+| 不确定, 或想装到所有工具 | 省略 `-a`(交互选择), 或写 `--all` |
+
+- `-g` 装到用户全局目录, 所有项目都能用; 去掉 `-g` 只装到当前项目。
+- Python 依赖只在真正跑分析时才需要, 安装 skill 本身不需要。开始分析前记得装上 (见下一节)。
+
+**实测记录** (Windows 11 + Git Bash, 从公开仓库安装):
+
+| 项目 | 结果 |
+|---|---|
+| `npx skills add Austin98/literature-analysis -a claude-code -y` | 安装成功, 文件落到 `.agents/skills/` 并链接到 `.claude/skills/` |
+| `python -m unittest discover tests` | 7 项全部通过 |
+| `python src/report.py --in demo/data/clean.jsonl --outdir output` | 生成 `report.md` 与 5 张图, **无需联网、无需账号** |
+
+### 2. 克隆仓库并安装依赖
+
+想改代码或离线使用, 可以克隆下来:
 
 ```bash
 git clone https://github.com/Austin98/literature-analysis.git
@@ -50,7 +81,7 @@ pip install -r requirements.txt
 
 可选: 只有使用 `llm_tasks.py run` 子命令时才需要 `pip install openai`。
 
-### 2. 用 skills CLI 安装 (推荐, 适用于任意 AI 工具)
+### 3. 用 skills CLI 自己安装 (命令行)
 
 [vercel-labs/skills](https://github.com/vercel-labs/skills) 是通用的 skill 安装工具, 会自动把 skill 放到各个 AI 工具的目录中:
 
@@ -75,7 +106,15 @@ npx skills remove literature-analysis
 
 `-a` 后面的工具名以 CLI 实际支持的为准, 常用的有 `claude-code`、`codex`、`codebuddy`、`trae`、`cursor`、`gemini-cli`、`github-copilot`、`opencode`、`windsurf`、`qwen-code`、`cline`、`roo`、`kimi-code-cli` 等 (完整列表运行 `npx skills add --help` 或在 CLI 报错时查看)。CLI 中没有列出的工具可使用下面的手动方式。
 
-### 3. 手动安装 (任意工具)
+### 4. 不想安装? 用完即走
+
+```bash
+npx skills use Austin98/literature-analysis@literature-analysis
+```
+
+它会打印一段提示词, 并把 skill 的全部文件下载到临时目录, 提示词末尾会写明该目录的位置。把整段输出粘贴给任意 AI 助手就能直接使用, **不改动本机任何 skill 目录**。适合只想试一次、或在不方便安装的工具 (网页版等) 里使用的情况。
+
+### 5. 手动安装 (任意工具)
 
 只要工具支持 SKILL.md 格式的 skill 目录, 把整个 `literature-analysis` 文件夹复制到其 skill 目录即可。常见位置:
 
@@ -90,7 +129,7 @@ npx skills remove literature-analysis
 - 各工具的目录约定可能随版本变化, 以该工具的官方文档为准。
 - 若工具不支持 skill 目录, 可把 `SKILL.md` 的内容粘贴为其系统提示或项目规则, 并让它在仓库根目录执行其中的命令。脚本本身与工具无关。
 
-### 4. 安装后怎么用
+### 6. 安装后怎么用
 
 在 AI 助手中直接描述需求, 例如:
 
