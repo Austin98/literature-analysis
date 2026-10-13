@@ -2,11 +2,11 @@
 """清洗: 去重(DOI / 标题指纹) + 按 profile 做机构归属标注。
 
 profile 中可选字段:
-  target_patterns    正则列表, 命中作者单位即标记为目标机构(如 "Air Force Research Laboratory")
+  target_patterns    正则列表, 命中作者单位即标记为目标机构(如 "Tsinghua University")
   contractor_patterns 正则列表, 标记承包商/合作方单位
 
 用法:
-  python src/clean.py --in data/raw.jsonl --profile profiles/afrl_dayton.json --out data/clean.jsonl
+  python src/clean.py --in data/raw.jsonl --profile profiles/example_generic.json --out data/clean.jsonl
 """
 import argparse
 import re

@@ -27,7 +27,7 @@ def write_jsonl(path, rows):
 
 def load_profile(name_or_path):
     """profile 是一个 JSON 文件, 定义目标机构、关键词、承包商词表等。
-    可以传内置名字(如 afrl_dayton)或任意路径"""
+    可以传内置名字(如 example_generic)或任意路径"""
     p = Path(name_or_path)
     if not p.exists():
         p = PROFILES / f"{name_or_path}.json"
